@@ -4,18 +4,20 @@
 \usepackage{tikz}
 \usepackage{tikz-cd}
 \usepackage{svg}
+\usepackage{bm}
+% notes
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen}
+\setbeamertemplate{note page}{%
+	\vskip 10pt
+	\lineskip 5pt
+	\large
+	\insertnote
+}
+\newcommand{\vk}{\vskip 5pt}
+\usepackage{mathtools}
 
 \newcommand{\R}{\mathbb{R}}
-
-\newenvironment<>{varblock}[2][\textwidth]{%
-	\setlength{\textwidth}{#1}
-	\begin{actionenv}#3%
-		\def\insertblocktitle{#2}%
-		\par%
-		\usebeamertemplate{block begin}}
-	{\par%
-		\usebeamertemplate{block end}%
-\end{actionenv}}
 
 \setbeamertemplate{theorems}[numbered] 
 \newtheorem{result}{Result}
@@ -41,7 +43,6 @@
 % (F) Widescreen 16:9 ratio
     %\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.45,debug]{beamerposter} 
 
-
 %%% TITLE PAGE INFO:
 
 \title{Derived Commutativity in Data Science,\\ Category Theory, and Quantum Physics}
@@ -64,23 +65,45 @@
 % Title page
 \begin{frame}[plain, noframenumbering]
     \titlepage
+    \note{Thank you, it's great to be here.}
 \end{frame}
 }
 
 % Table of contents slide
 \begin{frame}{Outline}
 	\vskip 2mm
-	\hfill	{\large \parbox{.95\textwidth}{\tableofcontents[hideothersubsections]}}
+	\hfill{\large \parbox{.95\textwidth}{\tableofcontents[hideothersubsections]}}
+	\note{The plan for today}
 \end{frame}
 
 \section{From data to topology}
 
+\note{Let's start here}
+
 \begin{frame}{Point clouds}
+	\note{
+		We can think of a point cloud of data, as obtained by sampling from a probability distribution function on $\R^n$.
+		\vk
+		These tend to concentrate around lower dimensional subspaces.
+		\vk
+		We would like to have ways to study this underlying space.
+		\vk
+		We can use triangulations to approximate it at different scales.
+		
+		Given a scale parameter $r$, we join pairs of points with an edge if their distance is less that $r$,
+		
+		if 3 points have pairwise distance less than $r$, then we place a triangle between them,
+		
+		and for 4 points, we include tethrahedra and so forth.
+		\vk
+		Instead of picking a scale, we can consider the entire family of approximating triangulations, and notice there is some structure here
+		
+		if $r$ is less than $r^\prime$, then the approximation at scale $r$ is part of that at $r^\prime$.
+	}
 	\begin{itemize}
 		\item A data set can often be thought of as a point cloud in $\R^n$.
 		
 		\vskip 8pt
-		\pause
 		
 		\item Underlying probability distribution concentrated in a subspace.
 		
@@ -129,11 +152,16 @@
 	\end{itemize}	
 \end{frame}
 
+\begin{frame}{Example: Nanoporous materials}
+	as
+\end{frame}
+
 \begin{frame}{Machine Learning and Topology}
 	Is there a way for ML practitioners to easily incorporate persistence homology into standard pipelines?
 	
 	\vskip 10pt
 	\pause
+	
 	\includegraphics[scale=.31]{giotto}	
 \end{frame}
 
@@ -272,8 +300,8 @@
 	
 	\begin{result}[M-M]
 		New description of the $\smallsmile_i$-products leading to \\
-		incorporation of $Sq^k$ into persistence homology, and with giotto-tda's team \\
-		high performance implementation under development.
+		incorporation of $Sq^k$ into persistence homology, and \\
+		high performance implementation under development (giotto-tda's team).
 	\end{result}
 	
 	\pause
@@ -371,13 +399,21 @@
 	
 \end{frame}
 
-\section{The operadic point of view}
+\section{The operadic viewpoint}
 
-\begin{frame}{The renaissance of operads}
+\begin{frame}{Operads}
 	
-	Now a days we understand that the ``derived" version of a commutative algebra is an algebra over an $E_\infty$-operad (P. May).
+	\vskip -5 pt
 	
-	\vskip 10 pt
+	\textcolor{pblue}{Analogy}:	abstract groups are to group representations as	\\
+	Operads are to algebras (commutative, or Lie, or associative, or $\dots$)	
+	
+	\vskip 5 pt
+	\pause
+	
+	Now a days we understand that the ``derived" version of a commutative algebra is an algebra over an $E_\infty$-operad. \note{This is a notion defined only up-to--homotopy, like the classifying space of principal bundles.}
+	
+	\vskip 5 pt
 	\pause
 	
 	There are effective models due to McClure-Smith and Berger-Fresse.
@@ -386,22 +422,168 @@
 		A computer algebra system on Python for the study of these operads and their algebras. (Right place to implement some of the earlier results).
 	\end{result}
 	
-	\vskip 10 pt
+	\vskip 5 pt
 	\pause
 	
 	More theoretically,
 	
 	\begin{result}[M-M]
 		Although no finitely presented $E_\infty$-operad can exist, I constructed a finitely presented prop $\mathcal M$ whose associated operad is $E_\infty$. Furthermore, \\
-		this operad is cofibrant and compatible with previous algebraic models.		
+		this operad is cofibrant and compatible with previous models.		
 	\end{result}
 \end{frame}
 
+\section{Back to data (time permitting)}
 
-%\section*{References}
-%
-%\begin{frame}[allowframebreaks]
-%	\frametitle{References}
+\begin{frame}{Graph Laplacian}
+	A powerful tool to study weighted networks. 
+	
+	\vskip 5pt
+	\pause
+	
+	\begin{center}
+		\includegraphics[scale=.5]{graph}
+	\end{center}
+	
+	\vskip -5pt
+	
+	\begin{equation*}
+	\resizebox{8.5cm}{!}{
+		$\partial =
+		\begin{pmatrix*}[r]
+		-1 & -1 &  0 \\
+		 1 &  0 & -1 \\
+		 0 &  1 &  1
+		\end{pmatrix*}
+		\qquad
+		W =
+		\begin{pmatrix*}[r]
+		w_{01}& 0      & 0 \\
+		0     & w_{01} & 0 \\
+		0     &      0 & w_{12}
+		\end{pmatrix*}
+		\qquad
+		\delta =
+		\begin{pmatrix*}[r]
+		-1 &  1 & 0 \\
+		-1 &  0 & 1 \\
+		 0 & -1 & 1
+		\end{pmatrix*}$}
+	\end{equation*}
+		
+	\vskip 10pt
+	\pause
+	
+	Two types of uses:
+	\begin{itemize}
+		\item[] \textcolor{pblue}{Structural (eigenvalues).}	The spectrum as a feature of the graph.
+		
+		\pause
+		
+		\item[] \textcolor{pblue}{Functional (eigenvectors).} A Fourier basis for signals on the graph, \\ 
+		
+		\vskip 5pt
+		\hspace*{5cm} \pause i.e., real numbers at every node.
+	\end{itemize}
+
+	\pause
+	
+	What if the signals are defined \\
+	\textcolor{pblue}{\ \ \ not just on single nodes?}
+\end{frame}
+
+\begin{frame}{Information signals}
+	
+	Emergent phenomena in complex systems 
+	
+	\begin{center}
+		\includegraphics[scale=.15]{fishes}
+	\end{center}
+
+	\vskip 5pt
+	\pause
+	
+	Given collection of probability distributions $X_0, \dots, X_N$, can assign to
+	
+	\vskip 5pt
+	
+	\quad Pairs: their mutual information, \\
+	\quad Triples: their interaction information, and\\
+	\quad $(n+1)$-element sets: higher analogues of these.
+	
+	\vskip 5pt
+	\pause
+	
+	\textcolor{pblue}{Problem:} The number of subsets grows exponentially with $n$.
+\end{frame}
+
+\begin{frame}{Hyperharmonic analysis}
+	
+	\vskip -5pt
+	
+	\textcolor{pblue}{Analogy:} Need only hear a few harmonics to distinguish a guitar's from a piano's middle C.
+	
+	\vskip 5pt
+	\pause
+	
+	\begin{result}
+		Propose a principled method to compress high-order information signals based on Fourier analysis and combinatorial topology.
+	\end{result}
+
+	Joint with F. Rosas (Imperial College), Sebasti\'an Rodriguez (UTFS, Chile) and Rodrigo Cofr\'e (PUCV, Chile). 
+	
+	\vskip 5pt
+	\pause
+	
+	\textcolor{pblue}{We use:} Eigenvectors of a discrete analogue $L_n$ of the Laplace-de Rham operator of Riemannian geometry generalizing the graph Laplacian $L_0$.
+	
+	\vskip 5pt
+	\pause
+	
+	\textcolor{pblue}{Compression:} How many components we need to reconstruct the signal?
+	
+	\vskip 5pt
+	\pause
+	
+	Consider a given $n$-dimensional high-order signal,
+	whose coefficients on the given basis are $\bm\alpha = \{\alpha_i\}$. Assume that $\alpha_i^2 \geq \alpha^2_j$ if $i \leq j$.
+	\begin{equation*}
+	\text{EV}_{\alpha}(k) = \frac{ \alpha_k^2}{{\displaystyle \sum_{i} \alpha_i^2}}
+	\qquad \text{ and } \qquad
+	\text{CEV}_{\alpha}(k) = \sum_{1\leq i \leq k} \text{EV}_{\alpha}(i),
+	\end{equation*}
+\end{frame}
+
+\begin{frame}{Proof of concept: Hayden's symphonies}
+	\vskip -5pt
+	\pause
+	
+	The ``London symphonies" as multivariate time series: each instrument a time series with values in $\{0, \dots , 12\}$. (9 instruments)
+	
+	\vskip 5pt
+	\pause
+	
+	We analyzed two high-order information signals: O-info and S-info.
+	
+	\vskip 3pt
+	\pause
+	
+	\hspace*{-12pt}\includegraphics[scale=.092]{hyperharmonic}
+\end{frame}
+
+{
+	\usebackgroundtemplate{\includegraphics[width=\paperwidth]{castillo.jpg}}%
+	\begin{frame}
+		\vskip 6cm
+		\begin{center}
+			\textcolor{pblue}{\Huge Thank you}
+		\end{center}
+	\end{frame}
+}
+
+
+%\begin{frame}%[allowframebreaks]
+%	\frametitle{Thank you!}
 %	\nocite{whitney1935history}
 %	\bibliographystyle{amsalpha}
 %	\bibliography{biblio.bib}
