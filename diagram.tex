@@ -1,0 +1,46 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\begin{document}
+\pagestyle{empty}
+
+% Define block styles
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']    
+    
+\begin{tikzpicture}[node distance = 2cm]
+	\node [block] (data) {Point cloud};
+	\node [block, right of=data, node distance=3cm] (simplicial) {Nested simplicial complexes};
+	\node [block, right of=simplicial, node distance=3cm] (algebraic) {Matrix representation};
+	\node [block, right of=algebraic, node distance=3cm] (invariant) {Topological invariant};
+	% Draw edges
+	\path [line] (data) -- (simplicial);
+	\path [line] (simplicial) -- (algebraic);
+	\path [line] (algebraic) -- (invariant);
+\end{tikzpicture}
+
+%\begin{tikzpicture}[node distance = 2cm, auto]
+%    % Place nodes
+%    \node [block] (init) {initialize model};
+%    \node [cloud, left of=init] (expert) {expert};
+%    \node [cloud, right of=init] (system) {system};
+%    \node [block, below of=init] (identify) {identify candidate models};
+%    \node [block, below of=identify] (evaluate) {evaluate candidate models};
+%    \node [block, left of=evaluate, node distance=3cm] (update) {update model};
+%    \node [decision, below of=evaluate] (decide) {is best candidate better?};
+%    \node [block, below of=decide, node distance=3cm] (stop) {stop};
+%    % Draw edges
+%    \path [line] (init) -- (identify);
+%    \path [line] (identify) -- (evaluate);
+%    \path [line] (evaluate) -- (decide);
+%    \path [line] (decide) -| node [near start] {yes} (update);
+%    \path [line] (update) |- (identify);
+%    \path [line] (decide) -- node {no}(stop);
+%    \path [line,dashed] (expert) -- (init);
+%    \path [line,dashed] (system) -- (init);
+%    \path [line,dashed] (system) |- (evaluate);
+%\end{tikzpicture}
+
+
+\end{document}
