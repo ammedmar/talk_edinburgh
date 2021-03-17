@@ -1,4 +1,4 @@
-\documentclass[10pt,t]{beamer} % handout
+\documentclass[10pt,t, handout]{beamer} % handout
 \usetheme{Heverlee}
 \usepackage{animate}
 \usepackage{tikz}
@@ -9,14 +9,14 @@
 \usepackage[absolute, overlay]{textpos}
 
 % notes
-\usepackage{pgfpages}
-\setbeameroption{show notes on second screen}
-\setbeamertemplate{note page}{%
-	\vskip 0pt
-	\lineskip 0pt
-	\normalsize
-	\insertnote
-}
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+%\setbeamertemplate{note page}{%
+%	\vskip 0pt
+%	\lineskip 0pt
+%	\normalsize
+%	\insertnote
+%}
 \newcommand{\vk}{\vskip 5pt}
 \newcommand{\press}{\textcolor{pblue}{PRESS}}
 \usepackage{mathtools}
@@ -37,7 +37,7 @@
     %\titlegraphic{\includegraphics[height=2.7cm]{example_figure.pdf}}
 
 % (D) Add logo to bottom right-corner (optional)
-    \logo{\includegraphics[height=0.7cm]{icosahedron-src.pdf}\hspace{12pt}\vspace{-6pt}} 
+    \logo{\includegraphics[height=0.7cm]{media/icosahedron-src.pdf}\hspace{12pt}\vspace{-6pt}} 
 
 % (E) Choose one (or none) of these lines to add footline bar on all frames
     %\setbeamertemplate{footline}[infoline]  % author, title, insitute
@@ -58,7 +58,7 @@
 \begin{document}
 {
 % Change image, or delete this line to remove background image
-\usebackgroundtemplate{ \parbox[b][\paperheight][b]{\paperwidth}{\centering\includegraphics[width=\paperwidth]{bg_alishan.jpg}}} 
+\usebackgroundtemplate{ \parbox[b][\paperheight][b]{\paperwidth}{\centering\includegraphics[width=\paperwidth]{media/bg_alishan.jpg}}} 
  %   abudhabi      cherry      forest      river
  %   alishan       chobe       leuven      sanfancisco
  %   blueprint     columns     library     uyuni
@@ -133,7 +133,7 @@
 	\vskip -5pt
 	
 	\begin{center}
-		\includegraphics[scale=.3]{torus}
+		\includegraphics[scale=.3]{media/torus}
 	\end{center}
 	
 	\pause 
@@ -144,7 +144,7 @@
 	\vskip 5pt
 	
 	\begin{center}
-		\includegraphics[scale=.4]{filtration}
+		\includegraphics[scale=.4]{media/filtration}
 	\end{center}
 	
 	\pause
@@ -175,10 +175,10 @@
 	
 	Given a simplicial complex $X$
 	\begin{center}
-		\includegraphics[scale=.05]{simplicial_complex}
+		\includegraphics[scale=.05]{media/simplicial_complex}
 		\qquad\qquad
 		\pause
-		\includegraphics[scale=.8]{simplex}
+		\includegraphics[scale=.8]{media/simplex}
 	\end{center}
 	
 	Incidence relations as a matrices
@@ -253,7 +253,7 @@
 	\textbf{A:} Hierarchical clustering.
 	
 	\begin{center}
-		\includegraphics[scale=.2]{dendogram}
+		\includegraphics[scale=.2]{media/dendogram}
 	\end{center}
 
 	\pause
@@ -261,7 +261,7 @@
 	
 	\textcolor{pblue}{Pipeline:}
 	\begin{center}
-		\includegraphics[scale=.8]{diagram.pdf}
+		\includegraphics[scale=.8]{media/diagram.pdf}
 	\end{center}
 \end{frame}
 
@@ -280,7 +280,7 @@
 	\textcolor{pblue}{Work by:} Lee, Bartel, Dlotko, Moosavi, \underline{Hess}, Smit
 	
 	\begin{center}
-		\includegraphics[scale=.085]{hess}
+		\includegraphics[scale=.085]{media/hess}
 	\end{center}
 	
 	\pause
@@ -319,7 +319,7 @@
 	Over 3M structures.
 	
 	\begin{textblock*}{4cm}(5.4cm,1.5cm)
-		\includegraphics[scale=.28]{real_material}
+		\includegraphics[scale=.28]{media/real_material}
 	\end{textblock*}
 	
 	\pause
@@ -330,7 +330,7 @@
 	are a metric space.
 	
 	\vspace*{-1cm}
-	\hspace*{3.8cm}\includegraphics[scale=.6]{nanoporous}
+	\hspace*{3.8cm}\includegraphics[scale=.6]{media/nanoporous}
 \end{frame}
 
 \begin{frame}{Machine Learning and Topology}
@@ -350,7 +350,7 @@
 	
 	\vskip 10pt
 	
-	\includegraphics[scale=.33]{giotto}	
+	\includegraphics[scale=.33]{media/giotto}	
 \end{frame}
 
 \section{Finer invariants}
@@ -706,9 +706,9 @@
 	Work motivated by physicist A. Kapustin (Caltech) and R. Thorngren (Harvard). They used my formulas in lattice field theory.
 	
 	\begin{center}
-		\includegraphics[scale=.13]{kapustin}
+		\includegraphics[scale=.13]{media/kapustin}
 		\hspace*{1cm}
-		\includegraphics[scale=.21]{thorngren}
+		\includegraphics[scale=.21]{media/thorngren}
 	\end{center}
 	
 	\pause
@@ -721,9 +721,9 @@
 	The above is joint with G. Brumfiel (Stanford) and J. Morgan (Columbia).
 	
 	\begin{center}
-		\includegraphics[scale=.21]{brumfiel}
+		\includegraphics[scale=.21]{media/brumfiel}
 		\hspace*{1cm}
-		\includegraphics[scale=.09]{morgan}
+		\includegraphics[scale=.09]{media/morgan}
 	\end{center}
 \end{frame}
 
@@ -759,7 +759,7 @@
 	Joint with R. Kaufmann (Purdue).
 	
 	\begin{center}
-		\includegraphics[scale=.1]{kaufmann}
+		\includegraphics[scale=.1]{media/kaufmann}
 	\end{center}
 	
 	\pause
@@ -855,7 +855,7 @@
 	\pause
 	
 	\begin{center}
-		\includegraphics[scale=.5]{graph}
+		\includegraphics[scale=.5]{media/graph}
 	\end{center}
 	
 	\vskip -5pt
@@ -930,7 +930,7 @@
 	\textcolor{pblue}{Complex Systems:} The whole is greater than the sum of its parts. 
 	
 	\begin{center}
-		\includegraphics[scale=.12]{fishes}
+		\includegraphics[scale=.12]{media/fishes}
 	\end{center}
 	
 	\vskip 5pt
@@ -1051,11 +1051,11 @@
 	\vskip 7pt
 	\pause
 	
-	\hspace*{-15pt}\includegraphics[scale=.096]{hyperharmonic}
+	\hspace*{-15pt}\includegraphics[scale=.096]{media/hyperharmonic}
 \end{frame}
 
 {
-	\usebackgroundtemplate{\includegraphics[width=\paperwidth]{castillo.jpg}}%
+	\usebackgroundtemplate{\includegraphics[width=\paperwidth]{media/castillo.jpg}}%
 	\begin{frame}
 		\vskip 6cm
 		\begin{center}
