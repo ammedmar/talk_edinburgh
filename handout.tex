@@ -1,4 +1,4 @@
-\documentclass[10pt,t]{beamer} % handout
+\documentclass[10pt,t, handout]{beamer} % handout
 \usetheme{Heverlee}
 \usepackage{animate}
 \usepackage{tikz}
@@ -10,7 +10,7 @@
 
 % notes
 \usepackage{pgfpages}
-\setbeameroption{show notes on second screen}
+%\setbeameroption{show notes on second screen}
 \setbeamertemplate{note page}{%
 	\vskip 0pt
 	\lineskip 0pt
@@ -79,7 +79,7 @@
 	
 	\vk
 
-	I will start by describing how to associate certain topological invariants to data sets, I'll illustrate their use with a real world example, and introduce one of the computational tools available for their incorporation into machine learning.
+	I will start by describing how to associate certain topological invariants to data sets, I'll illustrate their use with a real world example, and introduce one of the computational tools available for their incorporation into machine learning and data exploration.
 
 	\vk
 	
@@ -99,7 +99,7 @@
 \end{frame}
 
 \section{From data to topology}
-\note{Let's start here. And if you would like a handout version of the slides, I am placed the link the chat.}
+\note{Let's start here}
 
 \begin{frame}{Point clouds}
 	\note{\small
@@ -109,19 +109,19 @@
 		\vk
 		We would like to have ways to approximate and study this underlying space. \press
 		\vk		
-		Let me describe a method we can use to approximate this.
-		Given a scale parameter $r$, we construct a triangulation as follows.		
+		Let me tell you about a method we can use to approximate it.
+		Given a scale parameter $r$, we can construct a triangulation as follows.		
 		We join, with an edge, pairs of points in the cloud if their distance is less that $r$, the fixed parameter.
 		If 3 points have pairwise distances less than $r$, then we place a triangle between them, and for 4 points, we include tethrahedra and so forth. 
 		\press
 		
-		Here we see 4 examples of triangulations constructed over the same dataset with increasing values of the parameter.
+		Here we see 4 examples of triangulations constructed with increasing values of the parameter.
 		\vk
 		But, instead of picking a scale, corresponding to a specific value of the parameter, we can consider the entire family of approximations, noticing that there is structure in this family. \press
 		\vk
 		If $r$ is less than $r^\prime$, then the approximation at scale $r$ is part of that at $r^\prime$.
 		\vk
-		We will exploit this coherence after we overview a key topological invariant we can construct for any triangulated space.
+		We will exploit this coherence after we overview a topological invariant we can construct for any triangulated space.
 		I am refering to Homology. 
 	}
 	A data set can often be thought of as a point cloud in $\R^n$.
@@ -271,7 +271,7 @@
 	It was done by these researchers. including, Kathryn Hess, a leading figure in the community who runs the Topology and Neuroscience lab at EPFL. She will come back to the story later. \press
 	\vk
 	This researchers focused on nanoporous materials. These consist of an organic or inorganic framework supporting a regular porous structure. Tipically, the size of the pores is 100 nanometers or smaller.
-	There are a lot of such materials, and many more are being made inrapid succesion.
+	There are a lot of such materials, and many more are being made rapidly these days.
 	Naturally, the chemical composition is very important, but also the geometric structure of the pores, which as been probed with tools from christallography and other fields. \press
 	\vk
 	But what about Topology?
@@ -305,13 +305,13 @@
 
 \begin{frame}{Example: nanoporous materials}
 	
-	\note{There is a catalogue of over 3 million nanoporous structures. One would like to compare the geometries of these, but direct inspection on a data of this size is out of the question.
+	\note{There is a catalogue of over 3 million nanoporous structures. One would like to compare the geometries of these, but direct inspection at this scale is out of the question.
 	\vk
-	The authors constructed persistence diagrams using dimensions 0, 1 and 2 for each of these nanoporous structure. They used the methods we discussed starting with a point cloud of equidistantly distributed points in the cavities of a fundamental domain.
+	The authors of this paper constructed persistence diagrams using dimensions 0, 1 and 2 for each structure. They used the methods we discussed before starting with a point cloud of equidistantly distributed points in the cavities of a fundamental domain.
 	\vk
 	Since the set of persistence diagrams can be made into a metric space, they were able to quantify the distance of nanoporous geometries, using the distance of their associated persistence diagrams. \press
 	\vk
-	The authors were able to identify in this way materials with very similar nanoporous structures missed by other methods. Here are some examples. In each row there are distinct nanoporous materials that were identified to be have very similar geometries.
+	The authors of this paper, were able to identify in this way materials with very similar nanoporous structures missed by other methods. Here are some examples. In each row there are distinct nanoporous materials that were identified to be have very similar geometries.
 	\vk
 	As an application of the gain insight, they showed wrong a belief about the relationship between methane storage capabilities and the heat of absortion of a material. 
 	}
@@ -339,7 +339,7 @@
 	
 	With two goals in mind: one, to improve the speed of persistence homology computations AND, two, to integrate it into the traditional pipelines of machine learning. A collaboration between the Topology and Neuroscience Lab at EPFL, High performance experts from the REDs institute, and the Swiss machine learning company L2F, we developed giotto-tda. \press
 	\vk
-	A Python package for TDA built on top of high performance C++ code, that closely follows the operational structure of scikit-learn, and integrates effortlessly into machine learning pipelines.
+	A Python package for TDA built on top of high performance C++ implementations, that closely follows the operational structure of scikit-learn, and integrates effortlessly into machine learning pipelines.
 	\vk
 	This open source project also makes available several learning resources from its documentation page. The place I would recommend visiting to check if these tools can be used in your data science project.
 	}
@@ -405,13 +405,10 @@
 	
 	either an algebra structure or a module structure over the Steenrod algebra.
 	
-	I will define these in the next slides, emphasising how they are both induced from a structure at the cochain level, the matrix level.
-	\vk
-	Before going there though, a quick comment for the experts, in case you are wondering about coefficients here, notice that we can replace the torus and the Klein bottle by $\mathbb CP^2$ and the wedge of a 4 and a 2 sphere to make the same point over the integers. Yet, mod 2 coefficients are preferable in many applications since they can be stored with just one bit.
-	\vk
-	Let us return now to the definition of this extra algebraic structure on cohomology, the linear dual of homology.
-}
+	I will define these in the next slides, emphasising how they are both induced from a structure at the cochain level.
 	
+	Before going there thous, a quick comment for the experts, in case you are wondering about coefficients here, notice that we can replace the torus and the Klein bottle by $\mathbb CP^2$ and the wedge of a 4 and a 2 sphere to make the same point over the integers.}
+
 	\newcommand*{\xMin}{0}%
 	\newcommand*{\xMax}{4}%
 	\newcommand*{\yMin}{0}%
@@ -468,13 +465,13 @@
 	
 	\note{The cup product in cohomology was defined in the 30's by Alexander, Kolmogorov, \v{C}ech and Whitney, dualizing a chain approximation to the diagonal map.
 	
-	Although the resulting cup product in cohomology is graded commutative, the cup-0 product of cochains it's not. We can see that by just transposing the factors in this tensor product. We get a different formula.
+	Although the resulting cup product in cohomology is graded commutative, the cup-0 product of cochains it's not. We can see that by just transposing the factors in this tensor product.
 	
 	Steenrod, in the late 40's, introduced a correction to the lack of commutativity of cup-0 in the form of another explicit product, \press
 	
-	cup-1. It satisfies that the coboundary of cup1 is equal to the difference between cup-0 and its transpose. This right hand side would be 0 if cup-0 were commutative, which is not, but what we have is that cup0 is commutative up to an explicit coboundary given by cup-1.
+	cup-1, satisfying that the coboundary of alpha cup1 beta is equal to alpha cup0 beta - beta cup0 alpha. So cup0 is commutative up to an explicit coboundary given by the cup-1.
 	\vk
-	We notice some symmetry here, because, after transposing this identity, that is permuting alpha and beta, we see that the coboundary of the transpose of cup1 is also equal to the right hand side of this identity. Cup-1 and its transpose, both enforcing the derived commutativity of cup-0, are in general not equal to each other.}
+	We notice some symmetry here, because, after permuting alpha and beta, we see that the coboundary of beta cup1 alpha is also equal to the right hand side. Another coboundary witnessing the commutativity of cup-$0$.}
 
 	\vskip -5pt
 	The cup product
@@ -508,7 +505,7 @@
 
 \begin{frame}[fragile, noframenumbering]{Alexander-Whitney \& Steenrod}
 	
-	\note{So Steenrod constructed an explicit cup-2 product to correct for this, making cup-1 commutative up to an explicit coboundary.
+	\note{In general cup-1 is itself not commutative. So Steenrod constructed an explicit cup-2 product correct for the lack of commutativity of cup-1.
 	}
 	
 	\vskip -5pt
@@ -537,12 +534,12 @@
 	\vskip 15pt
 	
 	\textcolor{pblue}{Steenrod's cup-$2$:} \quad
-	$\delta(\alpha \smallsmile_2 \beta) = \alpha \smallsmile_1 \beta\, -\, \beta \smallsmile_1 \alpha$
+	$\delta(\alpha \smallsmile_2 \beta) = \alpha \smallsmile_1 \beta\, +\, \beta \smallsmile_1 \alpha$
 \end{frame}
 
 \begin{frame}[fragile, noframenumbering]{Alexander-Whitney \& Steenrod}
 	
-	\note{This process continues resulting in the cup-$i$ products of Steenrod: a coherent collection of explicit products whose coboundaries correct the lack of commutativity of the previous correction.
+	\note{We can keep repeating this and get the cup-$i$ products of Steenrod, a coherent collection of products whose coboundaries correct the lack of commutativity of the previous correction.
 		
 	Now, this structure on cochains defines at the cohomology level not just the cup product, but also the celebrated Steenrod squares. \press
 	
@@ -579,7 +576,7 @@
 	\vskip 15pt
 	
 	\textcolor{pblue}{Steenrod's cup-$i$:} \quad	
-	$\delta(\alpha \smallsmile_i \beta) = \alpha \smallsmile_{i-1} \beta\, -\, \beta \smallsmile_{i-1} \alpha$
+	$\delta(\alpha \smallsmile_i \beta) = \alpha \smallsmile_{i-1} \beta\, \pm\, \beta \smallsmile_{i-1} \alpha$
 	
 	\vskip 15pt
 	\pause
@@ -645,19 +642,17 @@
 \note{Let's discuss some even finer invariants of the cohomology of spaces}
 
 \begin{frame}{Secondary operations}
-	\note{Steenrod squares are defined by the cup-$i$ products which arise from lifting to the cochain level the commutativity relation of the cup product in cohomology. Recall, that the coboundary of cup-1 is the difference between cup-0 and its transpose.
+	\note{Steenrod squares, invariants at the cohomology level, are defined by the cup-$i$ products which arise from lifting to the cochain level the commutativity relation of the cup product in cohomology. Recall, that the coboundary of cup-1 is the difference between cup-0 and its transpose.
 	
-	We are motivated then to look for other cohomological relations to lift.
-	
-	We look at Steenrod squares themselves, sometimes referred to as primary cohomology operations. They satisfy relations and the invariants that appear by lifting and solving these relations are known as secondary operations. \press
+	We are motivated then to look for other cohomological relations to lift. Steenrod squares, examples of primary cohomology operations, satisfy relations themselves and the invariants that appear by lifting and solving these relations are known as secondary operations. \press
 	
 	There are two main relations that Steenrod squares satisfy: The Cartan and Adem relations. The first tells us how the squares interact with the cup product and the second tells us about their behaviour under interation. \press
 	
-	Can we lift these relations the cochain level?
+	Can we lift these the cochain level? \press
 	
 	Yes, the cup-$i$ products can be used to define both, the squares and the cup product in cohomology, so we use them to express these relations in the form: cup-$i$ version of the left hand side minus cup-$i$ version of the right hand side equal to a coboundary \press
 	
-	So we wonder if we can solve these equation, effectively constructing such coboundaries, and unlocking secondary cohomology operations
+	So we wonder if we can solve these equation, effectively constructing such coboundaries, and unlock secondary cohomology operations
 }
 	
 	The $Sq^k$ are obtained from lifting the relation
@@ -682,6 +677,7 @@
 	\begin{equation*}
 	C_k = \delta X, \qquad A_{i,j} = \delta Y,
 	\end{equation*}
+	\pause
 	\textcolor{pblue}{Can we solve them?}
 \end{frame}
 
@@ -844,7 +840,7 @@
 	
 	Additionally, we can consider the eigenvectors of the graph Laplacian. This preferred basis is often used for signal analysis on graphs. \press 
 	
-	Where \textit{signal} in this context means a real-valued function from the set of vertices of the graph. \press
+	Where signal in this context means a real-valued function from the set of vertices of the graph. \press
 
 	What if we are interested in signals defined not just on vertices but on sets of such vertices? But even earlier, are there any interesting signals defined on subsets of vertices?
 	}
@@ -913,9 +909,9 @@
 	
 	After Shannon's ground-breaking work on information theory. We have a well developed framework that allows us to compute the information content shared by different parts of the system, treated as subspaces of a join probability distribution. \press
 
-	For us is not so important to go over these definitions. It suffices to know they exist, and, therefore, that natural signals properly defined over simplices of high dimensions exist.
+	For us is not so important to go over these definitions. It suffices to know they exist, and, therefore, that natural signals properly defined over simplices of higher dimensions exist.
 	
-	For example, to an edge we can assign the mutual information shared by it vertices, for triangles, the interaction information of its vertices, and to higher dimensional simplices, we can assign appropriate generalizations of these. \press
+	For example, to edges we can assign the mutual information shared by their vertices, for triangles, the interaction information, and to higher dimensional simplices, we can assign appropriate generalizations of these. \press
 	
 	\vk
 	
@@ -957,35 +953,35 @@
 
 \begin{frame}{Hyperharmonic analysis}
 	
-	\note{Here is an analogy. Our cellphones are incapable of producing the fundamental frequency of most people's voices. But we still recognize them on the other side of the line, just hearing a lower fidelity version of their voices, that is, a lower dimensional representation of the signal. \press
+	\note{Here is an analogy. The speakers in our cellphones are to small to produce the fundamental vibration of half of the people's voices. But we still recognize them just hearing a lower fidelity version, slash lower dimensional representation of their voices. \press
 		
-	As another example, just a few harmonics are needed to distinguish a piano from a guitar playing the same note.
+	As another example, we notice that just a few harmonics are needed to distinguish a piano from a guitar playing the same note.
 	
 	Can we do something like that for information signals?
 	
 	Yes, indeed. \press
 	
-	Together with these researchers, we proposed a method that allows us to compress these signals substantially, reducing in this way some of the issues associated to the curse of dimensionality. \press
+	Together with these researchers, we proposed a method that allows us to compress these signals substantially, reducing in this way some of the issued associated to the curse of dimensionality. \press
 	
 	As harmonic modes, we used the eigenvectors of a discrete analogue of the Laplace-de Rham operator of Riemannian geometry, which generalizes the graph Laplacian.
 	
 	And as a measure of compression, we use the cummulative explained variance, defined as follows. \press
 	
-	Consider a signal and a fix basis. Without loss of generality, order the coefficients of this signal, in that basis, so that their squares are non-increasing.
-	The $k$-th explained variance is the proportion of the variance explained by the $k$-th coefficient, whereas the $k$-th cummulative explained variance is that explained by the first $k$ coefficients.
+	Consider a signal and a fix basis. Without lose of generality, order the coefficients of this signal in that basis so that their squares are non-increasing.
+	The $k$-th explained variance is the percentage of the variance explained by the $k$-th coefficient, whereas the $k$-th cummulative explained variance is that explained by the first $k$ coefficients.
 }
 	
 	\pause
 	
 	\vskip -5pt
 	
-	\textcolor{pblue}{Analogy:} We need only hear a few harmonics to distinguish a note played by a guitar or a piano.
+	\textcolor{pblue}{Analogy:} We need only hear a few harmonics to distinguish a guitar's from a piano's middle C.
 	
 	\vskip 5pt
 	\pause
 	
 	\begin{result}
-		Proposed a principled method to compress high-order information signals based on Fourier analysis and combinatorial topology.
+		Propose a principled method to compress high-order information signals based on Fourier analysis and combinatorial topology.
 	\end{result}
 
 	Joint with F. Rosas (Imperial), S. Rodr\'iguez (UTFS) and R. Cofr\'e (PUCV). 
@@ -1017,7 +1013,7 @@
 	
 	And analysed two high-order generalization of Shannon's mutual information called O-information and S-information. These are proposed to respectively capture synergistic and redundant phenomena. Their interpretations will not play a role for us today, though. 
 	
-	We computed them in dimension 2, 3, 4 and 5, corresponding to subsets of nodes of cardinalities between 3 and 6.
+	We computed them in dimension 2, 3, 4 and 5, corresponding to subsets of nodes of cardinalities 3, 4, 5 and 6.
 	
 	And we then plotted the resulting CEV curves for the canonical basis and for the fourier basis. \press
 	
@@ -1025,13 +1021,11 @@
 	
 	\vk
 	
-	We can see that green and red reach high values very quickly. This tells us that with just a few coefficients in the fourier basis, we recover most of the signal. On the other hand, blue and orange require many more components to reach values close to 1, showing some of the advantges of the fourier basis over the canonical one, and based on a figure I am not showwing, also over randomly generated bases.
+	We can see that green and red reach high values very quickly. This tells us that with just a few coefficients in the fourier basis, we recover most of the signal. On the other hand, blue and orange require many more components to reach values close to 1, showing some comparative limitations of the canonical basis compared to the fourier basis.
 	
 	\vk\vk
-	--------------------
 	
-	
-	Although, topology has been with mathematicians for over a century. In the past few years, we have seen an explosion of application of topology in the natural and computer sciences. And, thanks to the broader dissemination of \textit{its} ideas and the development of effective tools for its use, the insights that topology is providing researcher across diciplines are also... deepening.
+	Although, topology has been with mathematicians for over a century. In the past few years, we have seen an explosion of application of topology in the natural and computer sciences. and, thanks to the broader dissemination of its ideas and the development of effective tools needed for its use, the insights that topology is providing are also, deepening.
 	
 	\vk
 	
